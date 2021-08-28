@@ -6,6 +6,8 @@ import Header from "./components/Header/Header";
 import NewPost from "./pages/NewPost/NewPostForm";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import About from "./pages/PageAbout/About";
+import AuthorsList from "./pages/PageAuthors/AuthorsList/AuthorsList";
+import Author from "./pages/PageAuthors/Author/Author";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route exact path="/posts/new-post" component={NewPost} />
         <Route path="/posts/single-post" component={SinglePost} />
         <Route path="/about" component={About} />
+        <Route path="/authors" component={AuthorsList} />
+        <Route path="/author/1" component={Author} />
       </Switch>
       <Footer />
     </Fragment>
