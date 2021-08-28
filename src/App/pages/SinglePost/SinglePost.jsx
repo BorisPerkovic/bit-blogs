@@ -1,24 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BlogsCommunicator } from "../../../Services/data-services";
 
 
 
 const SinglePost = (props) => {
 
+  const postID = props.match.params.id;
+  const [post, setPost] = useState({});
+  const [user, setUser] = useState({});
+  const [authorsPosts, setAuthorsPosts] = useState([]);
+
+  const onPostFetch = () => {
+    const singlePosts = async () => {
+      const newPost = await BlogsCommunicator.fetchSinglePost(postID);
+      setPost(newPost);
+    };
+    
+    singlePosts();
+  }
+
+  const onUserFetch = () => {
+    const singleUser = async () => {
+      const newUser = await BlogsCommunicator.fetchSingleUser(post.userId);
+      setUser(newUser);
+    };
+    
+    singleUser();
+  }
+
+  const onAuthorsPosts = () => {
+    const authorsPosts = async () => {
+      const posts = await BlogsCommunicator.fetchAuthorsPosts(post.userId);
+      setAuthorsPosts(posts);
+    };
+    
+    authorsPosts();
+  }
+
+  useEffect(onPostFetch, [postID]);
+  useEffect(onUserFetch, [post]);
+  useEffect(onAuthorsPosts, [post.userId]);
+
+  console.log(authorsPosts);
+
   return (
     <div className="container">
-      <h2 className="text-center mt-5">Post TItle 1</h2>
-      <Link className="text-center d-block">Author</Link>
+      <h2 className="text-center mt-5">{post.title}</h2>
+      <Link className="text-center d-block">{user.name}</Link>
       <div className="row">
         <div className="col-md-12 py-5 border-bottom border-dark">
-          <p className="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga id excepturi ipsa quasi at quae! Sapiente incidunt aut magnam, tempora repellat esse voluptates tempore quas id asperiores, delectus nulla in vel nihil temporibus ad iure saepe accusamus. Consectetur, maiores ducimus. Dolore dignissimos neque tenetur! Voluptate quam eligendi asperiores dicta, nulla sed facere, libero ipsa saepe quod facilis, minus maiores ad error cupiditate in rem ut velit tempora sit. Quam, incidunt neque a, esse eaque cum voluptatem, dolores porro itaque nihil vero beatae quaerat laborum amet sit nisi corrupti nam odio harum ut magni deserunt doloribus pariatur sapiente! Asperiores, fugiat consectetur.</p>
+          <p className="text-center">{post.body}</p>
         </div>
         <div className="col-md-12 p-5">
-          <h4>3 more post from this author</h4>
+          <h4>{authorsPosts.length} more post from this author</h4>
           <ul>
-            <li><Link>some dummy text</Link></li>
-            <li><Link>some dummy text</Link></li>
-            <li><Link>some dummy text</Link></li>
+              {authorsPosts.map(post => <Link to={`/posts/single-post/${post.id}`} key={post.id}><li>{post.title}</li></Link>)}
           </ul>
         </div>
       </div>

@@ -16,7 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Posts} />
         <Route exact path="/posts/new-post" component={NewPost} />
-        <Route path="/posts/single-post" component={SinglePost} />
+        <Route path="/posts/single-post/:id" component={SinglePost} />
         <Route path="/about" component={About} />
         <Route path="/authors" component={AuthorsList} />
         <Route path="/author/1" component={Author} />

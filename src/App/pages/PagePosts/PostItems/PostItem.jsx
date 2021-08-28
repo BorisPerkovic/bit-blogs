@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PostItem = (props) => {
+const PostItem = ({ post }) => {
 
   return (
     <div className="col-md-12 p-2 border-bottom border-dark">
-      <Link to="/posts/single-post"><h3>Title</h3></Link>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, quisquam?</p>
+     <h3><Link to={`/posts/single-post/${post.id}`}>{post.title}</Link></h3> 
+      <p>{post.body.slice(0, 80)}...</p>
     </div>
   );
 };
