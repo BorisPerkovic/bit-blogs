@@ -9,7 +9,6 @@ function App() {
       <Switch>
         <Route />
       </Switch>
-      
     </Fragment>
   );
 }
