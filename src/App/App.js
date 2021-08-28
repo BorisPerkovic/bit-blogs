@@ -11,13 +11,7 @@ function App() {
       <Switch>
         <Route path="/posts/new-post" component={NewPost} />
       </Switch>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <Footer />
-=======
->>>>>>> ade418e662a272cfd9e7036caaea5865ce5a5948
-=======
->>>>>>> ade418e662a272cfd9e7036caaea5865ce5a5948
     </Fragment>
   );
 }
