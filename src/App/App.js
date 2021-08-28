@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import NewPost from "./pages/NewPost/NewPostForm";
 import SinglePost from "./pages/SinglePost/SinglePost";
+import About from "./pages/PageAbout/About";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={Posts} />
         <Route exact path="/posts/new-post" component={NewPost} />
         <Route path="/posts/single-post" component={SinglePost} />
+        <Route path="/about" component={About} />
       </Switch>
       <Footer />
     </Fragment>
