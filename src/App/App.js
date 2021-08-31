@@ -19,7 +19,7 @@ function App() {
         <Route path="/posts/single-post/:id" component={SinglePost} />
         <Route path="/about" component={About} />
         <Route path="/authors" component={AuthorsList} />
-        <Route path="/author/1" component={Author} />
+        <Route path="/author/:id" component={Author} />
       </Switch>
       <Footer />
     </Fragment>
