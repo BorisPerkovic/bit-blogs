@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../../../components/Spinner/Spinner";
 import { BlogsCommunicator } from "../../../../Services/data-services";
 
+import classes from "./Author.module.css";
+
 const Author = (props) => {
   const authorId = props.match.params.id;
   console.log(authorId);
@@ -38,28 +40,27 @@ const Author = (props) => {
 
   return (
     <div className="container">
-      <h1>{author.name}</h1>
-      <h2>Signle Author</h2>
       {onLoading && <Spinner />}
       <div className="row">
         <div className="col-md-12 py-3 border-bottom border-dark">
-          <div className="row">
-            <div className="col-md-4">
+        <h2 className="text-center my-5">Single Author</h2>
+          <div className={`row ${classes.authorMain}`}>
+            <div className={`col-md-3 ${classes.authorImg}`}>
               <img
                 src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640"
                 alt=""
                 className="img-fluid border border-dark rounded"
               />
             </div>
-            <div className="col-md-8 px-2">
-              <h2 className="m-1">{author.name}</h2>
-              <p className="m-1">
+            <div className="col-md-9 px-0">
+              <h2 className="mb-4">{author.name}</h2>
+              <p className="my-3">
                 username: <b>{author.username}</b>
               </p>
-              <p className="m-1">
+              <p className="my-3">
                 email: <b>{author.email}</b>
               </p>
-              <p className="m-1">
+              <p className="my-3">
                 phone: <b>{author.phone}</b>
               </p>
             </div>
@@ -68,14 +69,14 @@ const Author = (props) => {
         <div className="col-md-12 py-3 border-bottom border-dark">
           <div className="row justify-content-between">
             <div className="col-md-5 px-2">
-              <h2 className="m-1">Address</h2>
-              <p className="m-1">
+              <h2 className="mb-4">Address</h2>
+              <p className="my-3">
                 street: <b>{author.address.street}</b>
               </p>
-              <p className="m-1">
+              <p className="my-3">
                 city: <b>{author.address.city}</b>
               </p>
-              <p className="m-1">
+              <p className="my-3">
                 zipcode: <b>{author.address.zipcode}</b>
               </p>
             </div>
@@ -85,8 +86,8 @@ const Author = (props) => {
                   className="col-md-12"
                   title="address"
                   src={`https://www.google.com/maps?q=${author.address.geo.lat},${author.address.geo.lng}&z=15&output=embed`}
-                  width="300"
-                  height="200"
+                  width="200"
+                  height="188.06"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
@@ -96,11 +97,11 @@ const Author = (props) => {
           </div>
         </div>
         <div className="col-md-12 px-2 text-start mt-3">
-          <h2 className="m-1">Company</h2>
-          <p className="m-1">
+          <h2 className="mb-4">Company</h2>
+          <p className="my-3">
             name: <b>{author.company.name}</b>
           </p>
-          <p className="m-1">
+          <p className="my-3">
             slogan: <b>{author.company.bs}</b>
           </p>
         </div>
