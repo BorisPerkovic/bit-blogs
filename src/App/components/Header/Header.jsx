@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 //import classes from "./Header.module.css";
 
 const Header = () => {
+  const [isCollapsed, setIsColapsed] = useState(false);
+
+  const onClickCollapse = () => {
+    setIsColapsed(!isCollapsed);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -11,6 +17,7 @@ const Header = () => {
           <h1 className="navbar-brand">BIT BLOGS</h1>
         </Link>
         <button
+          onClick={onClickCollapse}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -21,7 +28,10 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`navbar-collapse ${isCollapsed ? "collapse" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link
