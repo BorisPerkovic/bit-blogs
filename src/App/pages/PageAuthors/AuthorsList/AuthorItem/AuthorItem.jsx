@@ -15,11 +15,10 @@ const AuthorItem = ({ author }) => {
   };
 
   useEffect(onAuthorsPosts, [author.id]);
-
+  console.log(author.id);
   return (
     <div className="col-md-12 p-3 border-bottom border-dark">
-      <Link to={`/author/${author.id}`}>
-        {" "}
+      <Link to={`/authors/author/${author.id}`}>
         {author.name} ( {authorPosts.length})
       </Link>
     </div>

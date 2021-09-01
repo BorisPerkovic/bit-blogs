@@ -47,7 +47,14 @@ const SinglePost = (props) => {
       <div className="container">
         {isLoading && <Spinner />}
         <h2 className="text-center mt-5">{post.title}</h2>
-        {!isLoading && <Link className="text-center d-block">{user.name}</Link>}
+        {!isLoading && (
+          <Link
+            to={`/authors/author/${user.id}`}
+            className="text-center d-block"
+          >
+            {user.name}
+          </Link>
+        )}
         <div className="row">
           <div className="col-md-12 py-5 border-bottom border-dark">
             {!isLoading && <p className="text-center">{post.body}</p>}
