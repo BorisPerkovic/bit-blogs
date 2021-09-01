@@ -1,0 +1,6 @@
+.aboutMain {
+  height: 81vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

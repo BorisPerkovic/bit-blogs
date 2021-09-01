@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { BlogsCommunicator } from "../../../Services/data-services";
 import Spinner from "../../components/Spinner/Spinner";
 
+import classes from "./SinglePost.module.css";
+
 const SinglePost = (props) => {
   const postID = props.match.params.id;
   const [post, setPost] = useState({});
@@ -46,16 +48,18 @@ const SinglePost = (props) => {
     <Fragment>
       <div className="container">
         {isLoading && <Spinner />}
-        <h2 className="text-center mt-5">{post.title}</h2>
+        <div className="col-md-12">
+          <h2 className="text-center mt-5">{post.title}</h2>
         {!isLoading && (
           <Link
             to={`/authors/author/${user.id}`}
-            className="text-center d-block"
+            className="text-center"
           >
-            {user.name}
+            <p>{user.name}</p>
           </Link>
         )}
-        <div className="row">
+        </div>
+        <div className={`row ${classes.postCenter}`}>
           <div className="col-md-12 py-5 border-bottom border-dark">
             {!isLoading && <p className="text-center">{post.body}</p>}
           </div>
