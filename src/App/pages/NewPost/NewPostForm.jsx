@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./NewPostForm.module.css";
 
 const NewPost = () => {
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const titleHandler = event => {
+    setTitle(event.target.value);
+  }
+
+  const contentHandler = event => {
+    setContent(event.target.value);
+  }
+
+  const enteredTitle = title.trim() !== "";
+  const enteredContent = content.trim() !== "";
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setFormIsValid(enteredTitle && enteredContent)
+    }, 1000);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [enteredTitle, enteredContent]);
+
+  const formSubmit = (event) => {
+    event.preventDefault();
+    window.location.assign("/");
+  }
+
   return (
     <div className="container">
       <div className={`row ${classes.formMain}`}>
@@ -14,10 +45,11 @@ const NewPost = () => {
             Title
           </label>
           <input
-            type="password"
+            type="text"
             id="post-title"
             className=" mb-4 form-control"
             aria-describedby="passwordHelpBlock"
+            onChange={titleHandler}
           />
           <label htmlFor="post-content" className="form-label mb-1">
             Content
@@ -28,11 +60,12 @@ const NewPost = () => {
             cols="30"
             rows="10"
             className="form-control"
+            onChange={contentHandler}
           ></textarea>
           <div className="row">
             <div className="col-xs-4 offset-xs-8 d-flex  justify-content-end">
-              <button className="btn btn-danger mt-5">Cancel</button>
-              <button className="btn btn-success mt-5 ms-2">Save</button>
+              <button className="btn btn-danger mt-5" onClick={formSubmit}>Cancel</button>
+              <button className="btn btn-success mt-5 ms-2" disabled={!formIsValid} onClick={formSubmit}>Save</button>
             </div>
           </div>
         </form>
