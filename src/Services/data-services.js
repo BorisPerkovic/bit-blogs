@@ -1,4 +1,4 @@
-import { POSTS, USERS, AUTHORS_POSTS } from "../Shared/endpoints";
+import { POSTS, USERS, AUTHORS_POSTS, SINGLE_USER } from "../Shared/endpoints";
 
 export class BlogsCommunicator {
   static async fetchAllUsers() {
@@ -8,7 +8,7 @@ export class BlogsCommunicator {
   }
 
   static async fetchSingleUser(id) {
-    const response = await fetch(`${USERS}/${id}`);
+    const response = await fetch(SINGLE_USER + id);
     const singleUser = await response.json();
     return singleUser;
   }

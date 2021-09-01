@@ -22,12 +22,13 @@ const AuthorsList = () => {
 
   return (
     <div className="container">
-      {isLoading && <Spinner />}
       <h2 className="text-center my-5"> AUTHORS ({allAuthors.length})</h2>
       <div className="row">
-        {allAuthors.map((author) => (
-          <AuthorItem key={author.id} author={author} />
-        ))}
+        {isLoading && <Spinner />}
+        {!isLoading &&
+          allAuthors.map((author) => (
+            <AuthorItem key={author.id} author={author} />
+          ))}
       </div>
     </div>
   );
